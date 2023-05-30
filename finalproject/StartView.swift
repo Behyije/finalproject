@@ -21,6 +21,7 @@ struct StartView: View {
                 }
                 VStack {
                     Text("身高")
+                        .bold()
                         .foregroundColor(Color.orange)
                     TextField("身高（公分）", text: $height,onEditingChanged: {isEditing in
                         if !isEditing {
