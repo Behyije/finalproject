@@ -1,33 +1,45 @@
- import SwiftUI
+import SwiftUI
 
 struct ContentView: View {
-    
     @State var isNavPush = false
+    @State var isData = true
     
     var body: some View {
         NavigationView {
-            VStack(spacing: 30) {
+            VStack(spacing: 20) {
+                
+                if let savedweight = UserDefaults.standard.value(forKey: "weight") as? Double{
+                    NavigationLink(isActive: $isData) {
+                        MainView()
+                            .navigationBarBackButtonHidden(true)
+                    } label: {}
+                }
+                
                 NavigationLink(isActive: $isNavPush) {
                     StartView()
+                        .navigationBarBackButtonHidden(true)
                 } label: {}
                 
-                Image("health-care")
+                Spacer()
+                
+                Image("heartbeat")
                     .resizable()
                     .scaledToFit()
-                    .frame(width: 100,height: 100)
+                    .frame(width: 180, height: 180)
                 
                 Button(action: {
-                    isNavPush = true // 設置狀態為true，啟動頁面跳轉
+                    isNavPush = true // Set the state to true to trigger navigation
                 }) {
-                    Text("開始")
+                    Text("開始使用")
                         .font(.system(size: 18))
                         .foregroundColor(.white)
                         .padding()
-                        .background(Color.blue)
+                        .background(Color.black)
                         .cornerRadius(10)
                 }
-
-            }.navigationTitle("運動飲食App")
+                Spacer()
+            }
+            .navigationTitle("Exercise & Diet")
             .padding()
         }
     }
