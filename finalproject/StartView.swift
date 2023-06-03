@@ -5,7 +5,7 @@ struct StartView: View {
     @State private var weight: String = ""
     @State private var height: String = ""
     @State private var bmi: Double = 0.0
-    @State private var suggestedCalories: Int = 0
+    @State private var suggestedCalories: Double = 0.0
     @State private var isShowingResult: Bool = false
     @State private var isNavPush = false
     
@@ -19,11 +19,13 @@ struct StartView: View {
                 
                 Spacer()
                 TextField("請輸入體重 (公斤)", text: $weight)
+                    .keyboardType(.decimalPad)
                     .textFieldStyle(RoundedBorderTextFieldStyle())
                     .frame(maxWidth: .infinity)
                     .padding(.bottom, 15)
                 
                 TextField("請輸入身高 (公分)", text: $height)
+                    .keyboardType(.decimalPad)
                     .textFieldStyle(RoundedBorderTextFieldStyle())
                     .frame(maxWidth: .infinity)
                     .padding(.bottom, 15)
@@ -33,7 +35,7 @@ struct StartView: View {
                     .frame(maxWidth: .infinity, alignment: .leading)
                     .padding(.bottom, 15)
                 
-                Text("建議攝取熱量: \(String(format: "%d", suggestedCalories)) 大卡")
+                Text("建議攝取熱量: \(String(format: "%.1f", suggestedCalories)) 大卡")
                     .font(.system(size: 18))
                     .frame(maxWidth: .infinity, alignment: .leading)
                     .padding(.bottom, 15)
@@ -62,14 +64,14 @@ struct StartView: View {
                             let heightValue = Double(height)
                             UserDefaults.standard.set(weightValue, forKey: "weight")
                             UserDefaults.standard.set(heightValue, forKey: "height")
+                            UserDefaults.standard.set(bmi, forKey: "bmi")
+                            UserDefaults.standard.set(suggestedCalories, forKey: "suggestedCalories")
                             isNavPush = true // 設置狀態為true，啟動頁面跳轉
                         }) {
-                            Text("->")
-                                .font(.system(size: 18))
-                                .foregroundColor(.white)
-                                .padding()
-                                .background(Color.black)
-                                .cornerRadius(10)
+                            Image(systemName: "arrow.right.circle.fill")
+                                .resizable()
+                                .frame(width: 50.0, height: 50.0)
+                                .foregroundColor(.black)
                         }
                         .padding(.bottom, 15)
                         
@@ -110,7 +112,7 @@ struct StartView: View {
     private func calculateCalories() {
         // 根據BMI計算建議攝取熱量（大卡）
         let caloriesPerBMIUnit = 1250
-        suggestedCalories = Int(bmi * Double(caloriesPerBMIUnit) / 10)
+        suggestedCalories = Double(bmi * Double(caloriesPerBMIUnit) / 10)
     }
 }
 

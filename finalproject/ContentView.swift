@@ -8,7 +8,7 @@ struct ContentView: View {
         NavigationView {
             VStack(spacing: 20) {
                 
-                if let savedweight = UserDefaults.standard.value(forKey: "weight") as? Double{
+                if let savedBmi = UserDefaults.standard.value(forKey: "bmi") as? Double{
                     NavigationLink(isActive: $isData) {
                         MainView()
                             .navigationBarBackButtonHidden(true)

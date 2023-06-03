@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		1382FE492A2920DB00F5CDBD /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1382FE482A2920DB00F5CDBD /* MainView.swift */; };
+		1397DF532A2B361F008508F0 /* AddFoodView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1397DF522A2B361F008508F0 /* AddFoodView.swift */; };
 		B78BA40C2A25C1F300AA5D72 /* finalprojectApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = B78BA40B2A25C1F300AA5D72 /* finalprojectApp.swift */; };
 		B78BA40E2A25C1F300AA5D72 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B78BA40D2A25C1F300AA5D72 /* ContentView.swift */; };
 		B78BA4102A25C1F400AA5D72 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B78BA40F2A25C1F400AA5D72 /* Assets.xcassets */; };
@@ -37,6 +38,7 @@
 
 /* Begin PBXFileReference section */
 		1382FE482A2920DB00F5CDBD /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
+		1397DF522A2B361F008508F0 /* AddFoodView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddFoodView.swift; sourceTree = "<group>"; };
 		B78BA4082A25C1F300AA5D72 /* finalproject.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = finalproject.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B78BA40B2A25C1F300AA5D72 /* finalprojectApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = finalprojectApp.swift; sourceTree = "<group>"; };
 		B78BA40D2A25C1F300AA5D72 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -103,6 +105,7 @@
 				B78BA40D2A25C1F300AA5D72 /* ContentView.swift */,
 				C777B7862A25D247000977C7 /* StartView.swift */,
 				1382FE482A2920DB00F5CDBD /* MainView.swift */,
+				1397DF522A2B361F008508F0 /* AddFoodView.swift */,
 				B78BA40F2A25C1F400AA5D72 /* Assets.xcassets */,
 				B78BA4112A25C1F400AA5D72 /* finalproject.entitlements */,
 				B78BA4122A25C1F400AA5D72 /* Preview Content */,
@@ -265,6 +268,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1397DF532A2B361F008508F0 /* AddFoodView.swift in Sources */,
 				C777B7872A25D247000977C7 /* StartView.swift in Sources */,
 				1382FE492A2920DB00F5CDBD /* MainView.swift in Sources */,
 				B78BA40E2A25C1F300AA5D72 /* ContentView.swift in Sources */,

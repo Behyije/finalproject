@@ -1,22 +1,34 @@
 import SwiftUI
 
 struct MainView: View {
-    @State private var currentCaloriesIntake: Double = 900.0
-    @State private var totalCaloriesIntake: Double = 1800.0
+    @State private var currentCaloriesIntake: Double = 0.0
+    @State private var bmi: Double = 0.0
+    @State private var suggestedCalories: Double = 0
+    @State private var isNavPush = false
+    
     var body: some View {
         TabView {
             //tab 飲食紀錄 start
             NavigationView{
                 VStack {
-                    Text("BMI: 25.0") // 顯示BMI值，請替換成實際的數值
-                        .frame(maxWidth: .infinity, alignment: .leading)
-                        .padding(.top,15)
-                        .padding(.leading)
+                    NavigationLink(isActive: $isNavPush) {
+                        AddFoodView()
+                            .navigationBarBackButtonHidden(true)
+                    } label: {}
                     
-                    Text("建議攝取大卡量: 1800") // 顯示建議攝取的大卡量，請替換成實際的數值
-                        .frame(maxWidth: .infinity, alignment: .leading)
-                        .padding(.top,15)
-                        .padding(.leading)
+                    if bmi != 0.0 {
+                        Text("BMI: \(String(format: "%.1f", bmi))")
+                            .frame(maxWidth: .infinity, alignment: .leading)
+                            .padding(.top,15)
+                            .padding(.leading)
+                    }
+                    
+                    if suggestedCalories != 0.0 {
+                        Text("建議大卡攝取量: \(String(format: "%.1f", suggestedCalories))")
+                            .frame(maxWidth: .infinity, alignment: .leading)
+                            .padding(.top,15)
+                            .padding(.leading)
+                    }
                     
                     Text("目前大卡攝取量: \(String(format: "%.1f", currentCaloriesIntake))") // 顯示目前大卡攝取量
                         .frame(maxWidth: .infinity, alignment: .leading)
@@ -24,13 +36,13 @@ struct MainView: View {
                         .padding(.leading)
                     
                     HStack{
-                        ProgressView(value: Double(currentCaloriesIntake), total: Double(totalCaloriesIntake)) // 進度條
+                        ProgressView(value: Double(currentCaloriesIntake), total: Double(suggestedCalories)) // 進度條
                             .accentColor(Color.green)
                             .scaleEffect(x: 1, y: 8)
                             .padding()
                         
                         Button(action: {
-                            
+                            isNavPush = true
                         }) {
                             Image(systemName: "plus.circle.fill")
                                 .resizable()
@@ -43,6 +55,19 @@ struct MainView: View {
                     Spacer() // 將元素推到頂部
                 }
                 .navigationTitle("飲食紀錄")
+                .onAppear {
+                    if let savedBmi = UserDefaults.standard.value(forKey: "bmi") as? Double {
+                        bmi = savedBmi
+                    }
+                    
+                    if let savedSuggestedCalories = UserDefaults.standard.value(forKey: "suggestedCalories") as? Double{
+                        suggestedCalories = (savedSuggestedCalories)
+                    }
+                    
+                    if let savedCurrentCalories = UserDefaults.standard.value(forKey: "currentCaloriesIntake") as? Double{
+                        currentCaloriesIntake = (savedCurrentCalories)
+                    }
+                }
             }
             .tabItem {
                 Image(systemName: "doc.text.below.ecg")
